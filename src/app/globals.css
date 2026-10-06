@@ -1,0 +1,184 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * GPAHub design system.
+ *
+ * Semantic tokens map the GPAHub sage palette to role-based variables so
+ * components never reference raw hex values. Light and dark themes share
+ * the same token names — only values differ.
+ *
+ * Light palette:  #7a918d #93b1a7 #b3d1ba #e8f7de #ffffff
+ * Dark palette:   #e0e2db #d2d4c8 #b8bdb5 #889696 #5f7470
+ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* ---------- Light theme ---------- */
+:root {
+  --radius: 0.625rem;
+
+  /* GPAHub light palette mapped to semantic roles */
+  --background: #ffffff;
+  --foreground: #2c3e3a; /* deep sage for text contrast */
+
+  --surface: #e8f7de; /* tinted elevated surface */
+  --surface-foreground: #2c3e3a;
+
+  --card: #ffffff;
+  --card-foreground: #2c3e3a;
+  --popover: #ffffff;
+  --popover-foreground: #2c3e3a;
+
+  --primary: #7a918d; /* brand sage — white text sits on top */
+  --primary-foreground: #ffffff;
+
+  --secondary: #93b1a7;
+  --secondary-foreground: #ffffff;
+
+  --muted: #e8f7de;
+  --muted-foreground: #5f7470;
+
+  --accent: #b3d1ba;
+  --accent-foreground: #2c3e3a;
+
+  --success: #93b1a7;
+  --success-foreground: #ffffff;
+
+  --destructive: #c87168; /* muted terracotta — calm, not neon */
+  --destructive-foreground: #ffffff;
+
+  --border: #d4e4d0;
+  --input: #d4e4d0;
+  --ring: #7a918d;
+
+  --chart-1: #7a918d;
+  --chart-2: #93b1a7;
+  --chart-3: #b3d1ba;
+  --chart-4: #e8f7de;
+  --chart-5: #5f7470;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #2c3e3a;
+  --sidebar-primary: #7a918d;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e8f7de;
+  --sidebar-accent-foreground: #2c3e3a;
+  --sidebar-border: #d4e4d0;
+  --sidebar-ring: #7a918d;
+}
+
+/* ---------- Dark theme ---------- */
+.dark {
+  --background: #5f7470; /* darkest sage */
+  --foreground: #e0e2db; /* lightest sage */
+
+  --surface: #889696;
+  --surface-foreground: #e0e2db;
+
+  --card: #5f7470;
+  --card-foreground: #e0e2db;
+  --popover: #5f7470;
+  --popover-foreground: #e0e2db;
+
+  --primary: #93b1a7; /* lighter sage pops on dark background */
+  --primary-foreground: #2c3e3a;
+
+  --secondary: #b8bdb5;
+  --secondary-foreground: #2c3e3a;
+
+  --muted: #889696;
+  --muted-foreground: #b8bdb5;
+
+  --accent: #b3d1ba;
+  --accent-foreground: #2c3e3a;
+
+  --success: #b3d1ba;
+  --success-foreground: #2c3e3a;
+
+  --destructive: #d99089;
+  --destructive-foreground: #2c3e3a;
+
+  --border: rgba(224, 226, 219, 0.16);
+  --input: rgba(224, 226, 219, 0.22);
+  --ring: #93b1a7;
+
+  --chart-1: #e0e2db;
+  --chart-2: #b8bdb5;
+  --chart-3: #93b1a7;
+  --chart-4: #b3d1ba;
+  --chart-5: #889696;
+
+  --sidebar: #5f7470;
+  --sidebar-foreground: #e0e2db;
+  --sidebar-primary: #93b1a7;
+  --sidebar-primary-foreground: #2c3e3a;
+  --sidebar-accent: #889696;
+  --sidebar-accent-foreground: #e0e2db;
+  --sidebar-border: rgba(224, 226, 219, 0.16);
+  --sidebar-ring: #93b1a7;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  /* Calm, accessible focus ring across the app */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
