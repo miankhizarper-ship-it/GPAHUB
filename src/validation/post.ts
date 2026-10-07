@@ -35,13 +35,13 @@ export const postSchema = z
       .string()
       .min(20, "Content must be at least 20 characters")
       .max(50_000, "Content is too long (max 50,000 characters)"),
-    coverImage: z.string().optional(),
-    publishedAt: z.string().optional(),
+    coverImage: z.string().optional().or(z.literal("")),
+    publishedAt: z.string().optional().or(z.literal("")),
     status: postStatusSchema,
     seo: z
       .object({
-        title: z.string().min(10).max(70).optional(),
-        metaDescription: z.string().min(50).max(170).optional(),
+        title: z.string().min(10).max(70).optional().or(z.literal("")),
+        metaDescription: z.string().min(50).max(170).optional().or(z.literal("")),
       })
       .strict()
       .optional(),
@@ -49,7 +49,7 @@ export const postSchema = z
   .strict()
   .superRefine((post, ctx) => {
     // Published posts must have a publishedAt date.
-    if (post.status === "published" && !post.publishedAt) {
+    if (post.status === "published" && (!post.publishedAt || post.publishedAt.trim() === "")) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: "Published posts must have a publishedAt date",

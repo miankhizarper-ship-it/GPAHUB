@@ -1,9 +1,9 @@
 import * as React from "react";
 import Link from "next/link";
-import { Plus, Search, Pencil, Eye, Upload, Download, Archive, Trash2 } from "lucide-react";
+import { Plus } from "lucide-react";
 import { getAll } from "@/repositories/universities.repository";
 import { UniversitiesTable } from "@/components/admin/universities-table";
-import { formatTimestamp } from "@/lib/format";
+import { ImportCsvButton } from "@/components/admin/universities/import-csv-button";
 
 export const metadata = {
   title: "Universities · Admin",
@@ -30,13 +30,16 @@ export default async function AdminUniversitiesPage() {
             {universities.length} {universities.length === 1 ? "university" : "universities"} total
           </p>
         </div>
-        <Link
-          href="/admin/universities/new"
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90"
-        >
-          <Plus className="h-4 w-4" aria-hidden="true" />
-          Add university
-        </Link>
+        <div className="flex flex-wrap items-center gap-3">
+          <ImportCsvButton />
+          <Link
+            href="/admin/universities/new"
+            className="inline-flex h-10 items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+          >
+            <Plus className="h-4 w-4" aria-hidden="true" />
+            Add university
+          </Link>
+        </div>
       </div>
 
       {dbError ? (
