@@ -208,12 +208,29 @@ export const universitySchema = z
     faqs: z.array(faqSchema).max(20, "A university can have at most 20 FAQs"),
     sourceUrl: z
       .string()
-      .url("sourceUrl must be a valid absolute URL")
-      .refine(
-        (val) => val.startsWith("http://") || val.startsWith("https://"),
-        "sourceUrl must use http or https",
-      ),
-    lastVerified: isoDateSchema,
+      .refine((val) => {
+        if (val === "") return true; // drafts can have empty sourceUrl
+        try {
+          const url = new URL(val);
+          return url.protocol === "http:" || url.protocol === "https:";
+        } catch {
+          return false;
+        }
+      }, "sourceUrl must be a valid http/https URL (or empty for drafts)"),
+    lastVerified: z
+      .string()
+      .refine((val) => {
+        if (val === "") return true; // drafts can have empty lastVerified
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(val)) return false;
+        const [y, m, d] = val.split("-").map(Number);
+        if (!y || !m || !d) return false;
+        const date = new Date(Date.UTC(y, m - 1, d));
+        return (
+          date.getUTCFullYear() === y &&
+          date.getUTCMonth() === m - 1 &&
+          date.getUTCDate() === d
+        );
+      }, "Date must be a valid YYYY-MM-DD date (or empty for drafts)"),
     seo: seoSchema.optional(),
     status: universityStatusSchema,
   })

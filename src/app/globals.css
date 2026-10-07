@@ -182,3 +182,40 @@
     @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
 }
+
+/* ---------- Custom Scrollbar ---------- */
+/* Light theme */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #e8f7de;
+}
+::-webkit-scrollbar-thumb {
+  background: #93b1a7;
+  border-radius: 5px;
+  border: 2px solid #e8f7de;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7a918d;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #93b1a7 #e8f7de;
+}
+
+/* Dark theme */
+.dark ::-webkit-scrollbar-track {
+  background: #5f7470;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #889696;
+  border-color: #5f7470;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #b8bdb5;
+}
+.dark * {
+  scrollbar-color: #889696 #5f7470;
+}

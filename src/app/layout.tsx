@@ -22,7 +22,11 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.name }],
   metadataBase: new URL(siteConfig.url),
   icons: {
-    icon: "/logo.svg",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/logo.svg" },
+    ],
+    shortcut: "/favicon.svg",
   },
   openGraph: {
     title: siteConfig.name,

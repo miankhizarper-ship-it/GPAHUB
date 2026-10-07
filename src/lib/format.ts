@@ -26,6 +26,9 @@ export function formatDate(iso: string): string {
 /**
  * Format an ISO 8601 timestamp (e.g. "2026-10-06T15:30:00.000Z") as a
  * short date+time string. Returns "—" for empty input.
+ *
+ * Uses timeZone: "UTC" to ensure identical output on server and client
+ * (prevents React hydration mismatch #441).
  */
 export function formatTimestamp(iso: string): string {
   if (!iso) return "—";
@@ -36,6 +39,7 @@ export function formatTimestamp(iso: string): string {
       year: "numeric",
       month: "short",
       day: "numeric",
+      timeZone: "UTC",
     });
   } catch {
     return iso;
